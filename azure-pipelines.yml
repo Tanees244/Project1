@@ -9,11 +9,22 @@ trigger:
 pool:
   vmImage: ubuntu-latest
 
-steps:
-- task: Npm@1
-  inputs:
-    command: 'install'
+jobs:
+- job: Build
+  displayName: 'Build Job'
+  steps:
+  - task: Npm@1
+    inputs:
+      command: 'install'
 
-- script: |
-    npm run build
-  displayName: 'npm build'
+  - script: |
+      npm run build
+    displayName: 'npm build'
+
+- job: RunTests
+  displayName: 'Run Tests'
+  steps:
+  - script: |
+      npm install
+      npm test
+    displayName: 'Run unit tests'
