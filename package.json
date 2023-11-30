@@ -17,7 +17,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "react-scripts test --watchAll=false",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -25,6 +25,9 @@
       "react-app",
       "react-app/jest"
     ]
+  },
+  "jest": {
+    "testPathIgnorePatterns": ["<rootDir>/node_modules/", "<rootDir>/build/", "<rootDir>/__test__/"]
   },
   "browserslist": {
     "production": [
