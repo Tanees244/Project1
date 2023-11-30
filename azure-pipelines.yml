@@ -15,4 +15,4 @@ steps:
 
 - script: |
     npm test
-  displayName: 'Run tests'
+  displayName: 'Run selenium tests' 
