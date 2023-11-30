@@ -13,8 +13,10 @@ steps:
 - task: Npm@1
   inputs:
     command: 'install'
-    workingDir: './package.json'
 
+- script: |
+    npm test
+  displayName: 'npm test'
 - script: |
     npm run build
   displayName: 'npm build'
