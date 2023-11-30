@@ -2,19 +2,17 @@ trigger:
 - main
 
 pool:
-  vmImage: 'ubuntu-latest'
+  vmImage: ubuntu-latest
 
 steps:
-- script: npm install
-  displayName: 'Install Dependencies'
-
-- script: npm test -- --coverage
-  displayName: 'Run Tests with Coverage'
-
-- task: PublishCodeCoverageResults@1
+- task: Npm@1
   inputs:
-    codeCoverageTool: 'Cobertura'
-    summaryFileLocation: '$(System.DefaultWorkingDirectory)/coverage/cobertura-coverage.xml'
-    reportDirectory: '$(System.DefaultWorkingDirectory)/coverage'
-    failIfCoverageEmpty: true
-  displayName: 'Publish Code Coverage Results'
+    command: 'install'
+
+- script: |
+    npm run build
+  displayName: 'npm build'
+
+- script: |
+    npm test
+  displayName: 'Run tests'
