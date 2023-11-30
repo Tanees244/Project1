@@ -4,35 +4,9 @@ trigger:
 pool:
   vmImage: 'ubuntu-latest'
 
-jobs:
-- job: TestHomePage
-  displayName: 'Test HomePage Component'
-  steps:
-  - script: |
-      npm install
-      npm test --testPathPattern='__tests__/HomePage.test.js'
-    displayName: 'Run Tests for HomePage Component'
+steps:
+- script: npm install
+  displayName: 'Install dependencies'
 
-- job: TestCertificationPage
-  displayName: 'Test CertificationPage Component'
-  steps:
-  - script: |
-      npm install
-      npm test --testPathPattern='__tests__/CertificationPage.test.js'
-    displayName: 'Run Tests for CertificationPage Component'
-
-- job: TestEducationPage
-  displayName: 'Test EducationPage Component'
-  steps:
-  - script: |
-      npm install
-      npm test --testPathPattern='__tests__/EducationPage.test.js'
-    displayName: 'Run Tests for EducationPage Component'
-
-- job: TestProjectsPage
-  displayName: 'Test ProjectsPage Component'
-  steps:
-  - script: |
-      npm install
-      npm test --testPathPattern='__tests__/ProjectsPage.test.js'
-    displayName: 'Run Tests for ProjectsPage Component'
+- script: npm test -- --coverage
+  displayName: 'Run Tests with Coverage'
