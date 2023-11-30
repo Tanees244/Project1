@@ -6,7 +6,15 @@ pool:
 
 steps:
 - script: npm install
-  displayName: 'Install dependencies'
+  displayName: 'Install Dependencies'
 
 - script: npm test -- --coverage
   displayName: 'Run Tests with Coverage'
+
+- task: PublishCodeCoverageResults@1
+  inputs:
+    codeCoverageTool: 'Cobertura'
+    summaryFileLocation: '$(System.DefaultWorkingDirectory)/coverage/cobertura-coverage.xml'
+    reportDirectory: '$(System.DefaultWorkingDirectory)/coverage'
+    failIfCoverageEmpty: true
+  displayName: 'Publish Code Coverage Results'
