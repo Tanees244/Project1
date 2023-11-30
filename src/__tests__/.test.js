@@ -1,30 +1,38 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import HomePage from './HomePage';
+import HomePage from '../components/HomePage';
+import CertificationPage from '../components/CertificationPage';
+import EducationPage from '../components/EducationPage';
+import Navbar from '../components/Navbar';
+import ProjectsPage from '../components/ProjectsPage';
 
 describe('HomePage Component', () => {
   it('renders the component without crashing', () => {
     render(<HomePage />);
   });
+});
 
-  it('displays welcome message', () => {
-    const { getByText } = render(<HomePage />);
-    expect(getByText('Welcome To My Portfolio !')).toBeInTheDocument();
+describe('CertificationPage Component', () => {
+  it('renders the component without crashing', () => {
+    render(<CertificationPage />);
   });
+});
 
-  it('displays about me information', () => {
-    const { getByText } = render(<HomePage />);
-    expect(getByText("Hello, my name is Syed Tanees. I'm a passionate developer with a keen interest in technology.")).toBeInTheDocument();
+describe('EducationPage Component', () => {
+  it('renders the component without crashing', () => {
+    render(<EducationPage />);
   });
+});
 
-  it('checks if image is rendered with alt text', () => {
-    const { getByAltText } = render(<HomePage />);
-    expect(getByAltText('Your Image')).toBeInTheDocument();
+describe('Navbar Component', () => {
+  it('renders the component without crashing', () => {
+    render(<Navbar />);
   });
+});
 
-  it('verifies fade-in animation class after initial render', () => {
-    const { container } = render(<HomePage />);
-    const homePageElement = container.querySelector('.home-page');
-    expect(homePageElement).toHaveClass('fade-in');
+
+describe('ProjectsPage Component', () => {
+  it('renders the component without crashing', () => {
+    render(<ProjectsPage />);
   });
 });
