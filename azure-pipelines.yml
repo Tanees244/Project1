@@ -1,35 +1,38 @@
-# Node.js with React - Build and Test Pipeline
-
 trigger:
-  branches:
-    include:
-      - main  # Replace 'main' with your main branch name
-  paths:
-    exclude:
-      - README.md  # Exclude files or directories from triggering pipeline on changes
+- main
 
 pool:
-  vmImage: ubuntu-latest
+  vmImage: 'ubuntu-latest'
 
 jobs:
-- job: Build
-  displayName: 'Build Job'
-  steps:
-  - task: NodeTool@0
-    inputs:
-      versionSpec: '14.x'  # Define Node.js version
-    displayName: 'Install Node.js'
-
-  - script: |
-      npm install
-      npm run build
-    displayName: 'Build'
-
-- job: RunTests
-  displayName: 'Run Tests'
-  dependsOn: Build  # Ensure tests run after successful build
+- job: TestHomePage
+  displayName: 'Test HomePage Component'
   steps:
   - script: |
       npm install
-      npm test
-    displayName: 'Run unit tests'
+      npm test --testPathPattern='__tests__/HomePage.test.js'
+    displayName: 'Run Tests for HomePage Component'
+
+- job: TestCertificationPage
+  displayName: 'Test CertificationPage Component'
+  steps:
+  - script: |
+      npm install
+      npm test --testPathPattern='__tests__/CertificationPage.test.js'
+    displayName: 'Run Tests for CertificationPage Component'
+
+- job: TestEducationPage
+  displayName: 'Test EducationPage Component'
+  steps:
+  - script: |
+      npm install
+      npm test --testPathPattern='__tests__/EducationPage.test.js'
+    displayName: 'Run Tests for EducationPage Component'
+
+- job: TestProjectsPage
+  displayName: 'Test ProjectsPage Component'
+  steps:
+  - script: |
+      npm install
+      npm test --testPathPattern='__tests__/ProjectsPage.test.js'
+    displayName: 'Run Tests for ProjectsPage Component'
